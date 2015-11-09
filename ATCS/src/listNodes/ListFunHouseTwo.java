@@ -53,7 +53,7 @@ public class ListFunHouseTwo
 	public void doubleFirst()
 	{
 		
-				
+				//lol
 	}
 
 	//this method will create a new node with the same value as the last node and add this
