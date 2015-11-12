@@ -42,6 +42,11 @@ public class HistoNode
 	{
 		next = n;
 	}
+	
+	public String toString()
+	{
+		return letter + " - " + letterCount;
+	}
 }
 
 
