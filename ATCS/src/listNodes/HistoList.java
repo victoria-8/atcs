@@ -1,134 +1,105 @@
 package listNodes;
-
-import java.util.*;
-import static java.lang.System.*;
-
 public class HistoList
 {
-   private HistoNode front;
+   //private HistoNode front;
+	
+	private ListNode front;
 
-	public HistoList( )
-	{
-		front = null;
-	}
-
-	//addLetter will add a new node to the front for let if let does not exist
-	//addLetter will bump up the count if let already exists
-	public void addLetter(char let)
-	{
-		if (front == null)
-		{
-			front = new HistoNode(let, 1, null);
-			//System.out.println(front);
-
-		}
-		
-		else if (indexOf(let) == -1)
-		{
-			HistoNode temp = front;
-			front = new HistoNode(let, 1, temp);
-			//System.out.println(front);
-
-		}
-		
-		else if (front.getLetter() == let)
-		{
-			front.setLetterCount(front.getLetterCount() + 1);
-			//System.out.println(front);
-
-		}
-		else
-		{
-			int node = indexOf(let);
-			HistoNode h = nodeAt(node);
-			h.setLetterCount(h.getLetterCount() + 1);
-			//System.out.println(h);
-
-		}
-		
-		
-				
-//		if (front != null)
-//		{
-//			if (front.getNext() != null && front.getLetter() != let)
-//			{
-//				while (front.getNext() != null)
-//				{
-//					front = front.getNext();
+    public HistoList( )
+    {
+        front = null;
+    }
+    
+    public void add(Object x)
+    {
+    	if(front == null)
+            front = new ListNode(new ThingCount(x, 1), null);
+        else
+        {
+            ListNode temp = front;
+            while(temp.getNext() != null && temp.getValue() != x)
+            {
+                temp = temp.getNext();
+            }
+            if(temp.getValue() == x)
+                temp.setValue(((ThingCount) temp.getValue()).getCount() + 1);
+            else
+                temp.setNext(new ListNode(new ThingCount(x, 1), null));
+        }
+    }
+    
+    
+//    public void addLetter(char let)
+//    {
+//        
+//    	if(front == null)
+//            front = new HistoNode(let, 1, null);
+//        else
+//        {
+//            HistoNode temp = front;
+//            while(temp.getNext() != null && temp.getLetter() != let)
+//            {
+//                temp = temp.getNext();
+//            }
+//            if(temp.getLetter() == let)
+//                temp.setLetterCount(temp.getLetterCount() + 1);
+//            else
+//                temp.setNext(new HistoNode(let, 1, null));
+//        }
+//    }
 //
-//					if (front.getLetter() == let )
-//					{
-//						front.setLetterCount(front.getLetterCount() + 1);
-//						//System.out.println(front);
+//    public int indexOf(char let)
+//    {
+//        int x = 0;
+//        HistoNode temp = front;
+//        while(front != null)
+//        {
+//            if(nodeAt(x).getLetter() == let)
+//                return x;
+//            x++;
+//            temp = temp.getNext();
+//        }
+//        return -1;
+//    }
 //
-//					}
-//					else
-//					{
-//						HistoNode temp = front;
-//						front = new HistoNode(let, 1, temp);
-//					}
-//					//System.out.println(front);
-//
-//				}
-//			}
-//			else
-//			{
-//				HistoNode temp = front;
-//				front = new HistoNode(let, 1, temp);
-//			}
-//		}
+//    private HistoNode nodeAt(int spot)
+//    {
+//        HistoNode current = front;
+//        int count = -1;
+//        while(front != null)
+//        {
+//            count++;
+//            if(count == spot)
+//                return current;
+//            else
+//                current = current.getNext();
+//        }
+//        return null;
+//    }
 
-	}
+//    public String toString()
+//    {
+//        String output = "";
+//        output += front.getLetter() + " - " + front.getLetterCount();
+//        HistoNode temp = front.getNext();
+//        while(temp != null)
+//        {
+//            output += "\t" + temp.getLetter() + " - " + temp.getLetterCount();
+//            temp = temp.getNext();
+//        }
+//        return output;
+//    }
 
-	//returns the index pos of let in the list if let exists
-	public int indexOf(char let)
-	{
-		int counter = 0;
-		if (front.getLetter() == let)
-			return counter;
-		
-		while (front.getNext() != null)
-		{
-			front = front.getNext();
-			counter++;
-			if (front.getLetter() == let)
-				return counter;
-		}
-		
-		return -1;
-	}
-
-	//returns a reference to the node at spot
-	private HistoNode nodeAt(int spot)
-	{
-		if (spot == 0)
-			return front;
-		
-		int counter = 0;
-		HistoNode current=null;
-		
-		while (front.getNext() != null)
-		{
-			front = front.getNext();
-			counter++;
-			if (counter == spot)
-				return front;
-		}
-
-		return current;
-	}
-
-	//returns a string will all values from list
-	public String toString()
-	{
-		String output = "";
-		
-		while (front.getNext() != null)
-		{
-			front = front.getNext();
-			output += front.getLetter() + " - " + front.getLetterCount();
-		}
-
-		return output;
-	}
+    public String toString()
+    {
+        String output = "";
+        output += front.getValue() + " - " + front.getLetterCount();
+        HistoNode temp = front.getNext();
+        while(temp != null)
+        {
+            output += "\t" + temp.getLetter() + " - " + temp.getLetterCount();
+            temp = temp.getNext();
+        }
+        return output;
+    }
 }
