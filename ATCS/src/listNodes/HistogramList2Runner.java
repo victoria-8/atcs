@@ -10,6 +10,7 @@ public class HistogramList2Runner
 		String testString = "ABCDEFABCDEFFEDCBAAAAABBBBBCCCDAAAAAAAEEFFF";
 		for(char c : testString.toCharArray())
 		{
+			
 			test.add(c);
 		}
 		System.out.println(test);

@@ -37,8 +37,8 @@ public class ThingCount implements Comparable
 	
 	public boolean equals(Object obj)
 	{
-		ThingCount other = (ThingCount)obj;
-		if (count == other.getCount())
+		ThingCount other = new ThingCount(obj, 1);
+		if (thing == other.getThing())
 			return true;
 		return false;
 	}

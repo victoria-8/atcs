@@ -13,15 +13,16 @@ public class HistoList
     public void add(Object x)
     {
     	if(front == null)
+    		
             front = new ListNode(new ThingCount(x, 1), null);
         else
         {
             ListNode temp = front;
-            while(temp.getNext() != null && temp.getValue() != x)
+            while(temp.getNext() != null && !temp.getValue().equals(x))
             {
                 temp = temp.getNext();
             }
-            if(temp.getValue() == x)
+            if(temp.getValue().equals(x))
                 temp.setValue(((ThingCount) temp.getValue()).getCount() + 1);
             else
                 temp.setNext(new ListNode(new ThingCount(x, 1), null));
@@ -76,6 +77,35 @@ public class HistoList
 //        }
 //        return null;
 //    }
+    
+    public int indexOf(char let)
+    {
+        int x = 0;
+        ListNode temp = front;
+        while(front != null)
+        {
+//            if(nodeAt(x).getLetter() == let)
+//                return x;
+//            x++;
+//            temp = temp.getNext();
+        }
+        return -1;
+    }
+
+    private ListNode nodeAt(int spot)
+    {
+        ListNode current = front;
+        int count = -1;
+        while(front != null)
+        {
+            count++;
+            if(count == spot)
+                return current;
+            else
+                current = current.getNext();
+        }
+        return null;
+    }
 
 //    public String toString()
 //    {
@@ -90,14 +120,27 @@ public class HistoList
 //        return output;
 //    }
 
+//    public String toString()
+//    {
+//        String output = "";
+//        output += front.getValue() + " - " + front.getLetterCount();
+//        HistoNode temp = front.getNext();
+//        while(temp != null)
+//        {
+//            output += "\t" + temp.getLetter() + " - " + temp.getLetterCount();
+//            temp = temp.getNext();
+//        }
+//        return output;
+//    }
+    
     public String toString()
     {
         String output = "";
-        output += front.getValue() + " - " + front.getLetterCount();
-        HistoNode temp = front.getNext();
+        output += front.getValue();
+        ListNode temp = front.getNext();
         while(temp != null)
         {
-            output += "\t" + temp.getLetter() + " - " + temp.getLetterCount();
+            output += "\t" + temp.getValue();
             temp = temp.getNext();
         }
         return output;

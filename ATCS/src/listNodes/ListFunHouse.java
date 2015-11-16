@@ -93,4 +93,19 @@ public class ListFunHouse
 		}
 		
 	}		
+	
+	public static int countEm(ListNode list, Comparable b, Comparable c)
+	{
+		int count = 0;
+		while (list != null)
+		{
+			if (list.getValue().compareTo(b) > 0 && list.getValue().compareTo(c) < 0)
+			{
+				count += 1;
+			}
+			list = list.getNext();
+		}
+		return count;
+	}
+
 }

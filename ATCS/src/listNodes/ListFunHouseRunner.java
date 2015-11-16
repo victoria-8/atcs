@@ -29,10 +29,7 @@ public class ListFunHouseRunner
 		ListFunHouse.print(z);
 		out.println();		
 
-		ListFunHouse.doubleFirst(z);		
-		out.println("\nList values after calling doubleFirst\n");							
-		ListFunHouse.print(z);
-		out.println();	 
+		 
 
 		ListFunHouse.doubleLast(z);		
 		out.println("\nList values after calling doubleLast\n");							
@@ -53,5 +50,10 @@ public class ListFunHouseRunner
 		out.println("\nList values after calling skipEveryOther(z)\n");					
 		ListFunHouse.print(z);
 		out.println();
+		
+		ListFunHouse.doubleFirst(z);		
+		out.println("\nList values after calling doubleFirst\n");							
+		ListFunHouse.print(z);
+		out.println();	
 	}
 }
