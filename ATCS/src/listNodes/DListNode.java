@@ -46,4 +46,8 @@ public class DListNode
     public void setPrevious(DListNode node){
     	this.previous = node;
     }
+    public String toString()
+    {
+    	return "" + value;
+    }
 }

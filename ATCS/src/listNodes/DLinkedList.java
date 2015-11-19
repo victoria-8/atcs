@@ -45,7 +45,7 @@ public void addFirst(Object o) {
 	DListNode temp = firstNode;
 	if(firstNode == null){
 		firstNode = new DListNode(o,null,null);
-		
+		System.out.println("firstNode = " + firstNode);
 	}
 	else{
 		 firstNode = new DListNode(o,temp,null);
@@ -108,18 +108,18 @@ public Object removeLast(){
 
  */ 
 
-public String toString(){
-	
-	String output = "";
-	DListIterator iter = iterator();
-	while (iter.hasNext())
-	{
-		
-		output += iter.next().toString()+" ";
-		
-	}
-	return output;
-}
+//public String toString(){
+//	
+//	String output = "";
+//	DListIterator iter = iterator();
+//	while (iter.hasNext())
+//	{
+//		
+//		output += iter.next().toString()+" ";
+//		
+//	}
+//	return output;
+//}
 
 /** 
 
@@ -175,5 +175,19 @@ public DListIterator iterator() {
 
 return new DListIterator(this); 
 
+}
+
+public String toString()
+{
+	String x = "";
+	DListNode node = firstNode;
+	while (node.next() != null)
+	{
+		x += node.getValue() + " ";
+		node = node.next();
+	}
+	
+	return x;
+		
 }
 }

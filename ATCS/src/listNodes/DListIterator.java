@@ -35,6 +35,8 @@ private boolean canRemove; // for remove() method. true if OK to call
 public String toString(){
 	
 	String output="";
+	
+	
 
    	output += (current.getValue()+" ");
 	   while(current.next() != null){
