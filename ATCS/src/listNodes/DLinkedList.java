@@ -45,10 +45,12 @@ public void addFirst(Object o) {
 	DListNode temp = firstNode;
 	if(firstNode == null){
 		firstNode = new DListNode(o,null,null);
-		System.out.println("firstNode = " + firstNode);
+		//System.out.println("firstNode = " + firstNode);
 	}
 	else{
 		 firstNode = new DListNode(o,temp,null);
+			//System.out.println("firstNode = " + firstNode);
+
 		
 	}
 	
@@ -70,6 +72,7 @@ public void addLast(Object o){
 	else
 	{
 		lastNode = new DListNode(o, null, temp);
+		//System.out.println("lastNode = " + lastNode);
 	}
 	
 }
@@ -82,11 +85,40 @@ public void addLast(Object o){
 
 public Object removeFirst(){
 	
+//	DListNode temp = firstNode;
+//	firstNode.setValue(null);
+//	return temp;
+	
 	DListNode temp = firstNode;
-	firstNode.setValue(null);
-	return temp;
+	
+	return removeXthNode(firstNode, 1);
+	//firstNode = firstNode.next();
+	
 	
 }
+
+public Object removeXthNode(DListNode list, int x)
+{
+	int count=1;
+	DListNode rm = null;
+	while (list.next() != null)
+	{
+		
+		if (count == x)
+		{
+			rm = list;
+			list.setNext(list.next().next());
+			count+=1;
+		}
+		
+		if (list.next() != null)
+			list = list.next();
+		count++;
+
+	}
+	return rm.getValue();
+	
+}		
 
 /** 
 
@@ -96,8 +128,12 @@ public Object removeFirst(){
 
 public Object removeLast(){
 	
+//	DListNode temp = lastNode;
+//	lastNode.setValue(null);
+//	return temp;
+	
 	DListNode temp = lastNode;
-	lastNode.setValue(null);
+	removeXthNode(firstNode, this.size());
 	return temp;
 	
 }
@@ -145,14 +181,27 @@ public int size() {
 
  */ 
 
-private void clear() { 
+public void clear() { 
 	/*DListIterator iter = iterator();
 	while(iter.hasNext()){
 		iter.next();
 		iter.remove();
 	}*/
-	firstNode = null;
-	lastNode = null;
+	int count=1;
+	
+	while (firstNode.next() != null)
+	{
+		
+		
+			firstNode.setNext(firstNode.next().next());
+			count+=1;
+		
+		
+		if (firstNode.next() != null)
+			firstNode = firstNode.next();
+		count++;
+
+	}
 }
 
 /** 
@@ -181,6 +230,7 @@ public String toString()
 {
 	String x = "";
 	DListNode node = firstNode;
+	//x += firstNode.getValue() + " ";
 	while (node.next() != null)
 	{
 		x += node.getValue() + " ";

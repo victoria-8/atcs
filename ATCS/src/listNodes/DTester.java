@@ -6,24 +6,25 @@ public class DTester {
 		// TODO Auto-generated method stub
 		
 		DLinkedList d = new DLinkedList();
-		
-		d.addFirst("go");
-		
+		d.addFirst("a");
 		DListIterator iter = d.iterator();
-		
-		iter.add("a");
-		iter.add("b");
-		iter.add("c");
-		iter.add("d");
-		iter.add("e");
+
+		d.addFirst("a");
+		d.addFirst("b");
+		d.addFirst("c");
+		d.addFirst("d");
+		d.addFirst("e");
 
 		d.addLast("z");
+		d.addLast("z");
+
 		
 		System.out.println(d);
 		
-		d.removeFirst();
-		
 		System.out.println("remove first");
+
+		System.out.println("removing " + d.removeFirst());
+		
 		System.out.println(d);
 		
 		d.removeLast();
@@ -32,6 +33,14 @@ public class DTester {
 		System.out.println(d);
 		
 		System.out.println("size = " + d.size());
+		
+		d.clear();
+		System.out.println("clear");
+		System.out.println(d);
+		
+
+
+
 
 
 
