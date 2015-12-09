@@ -47,4 +47,10 @@ public class Card implements Comparable<Card>{
 		return (getValue() + " of " + getSuit());
 	}
 
+	@Override
+	public int compareTo(Card arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
