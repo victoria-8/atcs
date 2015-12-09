@@ -44,7 +44,7 @@ public class MyStack {
 		return 0;
 	}
 
-	public String toString()
+	public String toString()s
 	{
 		return 
 	}
