@@ -1,6 +1,7 @@
 package stacks;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class MyStack {
 	//using Linked Lists
@@ -41,12 +42,19 @@ public class MyStack {
 			if (list.get(i).equals(a))
 				return i+1;
 		}
-		return 0;
+		return -1;
 	}
 
-	public String toString()s
+	public String toString()
 	{
-		return 
+		String x = "";
+		ListIterator<Object> iter = list.listIterator();
+		while (iter.hasNext())
+		{
+			x += iter.next() + " ";
+		}
+		return x;
+
 	}
 
 }

@@ -2,7 +2,7 @@ package stacks;
 
 public class MyStackTester {
 
-	static void arrayListStack()
+	public static void main(String[] args)
 
 	{
 
