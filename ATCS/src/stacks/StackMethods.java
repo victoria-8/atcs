@@ -28,12 +28,12 @@ public class StackMethods
 			if (!two.isEmpty())
 				three.push(two.pop());
 		}
-		Stack<String> four = new Stack<String>();
-		while (!three.isEmpty())
-		{
-			four.push(three.pop());
-		}
-		return four;
+//		Stack<String> four = new Stack<String>();
+//		while (!three.isEmpty())
+//		{
+//			four.push(three.pop());
+//		}
+		return three;
 	}
 
         //Good Question: For alternating stacks, are they the same size??…Do they have to be??? 
@@ -41,22 +41,16 @@ public class StackMethods
 	public static Stack<String> removeEveryOther(Stack<String> one)
 	{
 		
-		Stack<String> s = new Stack<String>();
-		for (int i = 0; i < one.size(); i++)
+		Iterator<String> iter = one.listIterator();
+		int counter = -1;
+		while (iter.hasNext())
 		{
-			if (i%2 == 0)
-			{
-				s.push(one.pop());
-			}
-			else
-				one.pop();
+			counter++;
+			iter.next();
+			if (counter%2 != 0)
+				iter.remove();
 		}
-		Stack<String> newS = new Stack<String>();
-		while (!s.isEmpty())
-			newS.push(s.pop());
-		System.out.println(one.size());
-
-		return newS;
+		return one;
 	}
 
       //Removes every other element in the stack – but the order of others shouldn’t change. 
@@ -99,6 +93,7 @@ public class StackMethods
 		//three four five
 		//three two four one five
 		//five four two three one
+		//five four two one three
 		
 		display(alternateStack(b,c));
 
@@ -121,6 +116,7 @@ public class StackMethods
 		//ten nine eight seven six
 		//ten eight six
 		
+		System.out.println(getAverage(a));
 	}
 
 
