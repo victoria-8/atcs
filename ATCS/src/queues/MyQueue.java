@@ -4,46 +4,65 @@ public class MyQueue
 { 
 	//using arrays
 	
-	private Object [] array = new Object [10];
+	private String [] array = new String [0];
 	
-	public Object offer(Object item)
+	public String offer(String item)
 	{
-//		Object [] array2 = new Object [1];
+//		String [] array2 = new String [1];
 //		array2[0] = item;
-//		Object [] array3 = new Object[array.length + 1];
+//		String [] array3 = new String[array.length + 1];
 //		System.arraycopy(array,0,array3,array.length,array.length);
 //		System.arraycopy(array2,0,array3,array.length+1,1);
-//		//	arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+//		//	arraycopy(String src, int srcPos, String dest, int destPos, int length)
 //		array = array3;
 //		return item;
-		Object [] array2 = new Object[array.length + 1];
-		for (int i = 0; i < array2.length; i++)
+		if (array.length == 0)
 		{
-			array2[i] = array[i];
+			String [] arr = new String[1];
+			arr[0] = item;
+			array = arr;
 		}
-		array2[array.length + 1] = item;
-		array = array2;
-		return array;
+		else
+		{
+			String [] array2 = new String[array.length + 1];
+			for (int i = 0; i < array.length; i++)
+			{
+//				if (array[i]!= null)
+					array2[i] = array[i];
+				//	System.out.println("array[i] = " + array[i]);
+			}
+			array2[array.length] = item;
+			array = array2;
+
+		}
+		return item;
 	}
 
-	public Object poll()
+	public String poll()
 	{
-		Object x = array[0];
-		Object [] array2 = new Object [array.length - 1];
-		System.arraycopy(array,1,array2,array.length-1,array.length-1);
+		String x = array[0];
+		String [] array2 = new String [array.length - 1];
+		for (int i = 0; i < array.length-1; i++)
+		{
+//			if (array[i]!= null)
+				array2[i] = array[i+1];
+			//	System.out.println("array[i] = " + array[i]);
+		}
 		array = array2;
 		return x;
 
 	}
 
-	public Object peek()
+	public String peek()
 	{
-		return array[0];
+		if (array.length != 0)
+			return array[0];
+		return null;
 	}
 
 	public boolean isEmpty()
 	{
-		for (Object x : array)
+		for (String x : array)
 		{
 			if (x != null)
 				return false;
@@ -54,7 +73,7 @@ public class MyQueue
 	public int size()
 	{
 		int count = 0;
-		for (Object x : array)
+		for (String x : array)
 		{
 			if (x != null)
 				count++;
@@ -62,7 +81,7 @@ public class MyQueue
 		return count;
 	}
 	
-	public int search(Object a)
+	public int search(String a)
 	{
 		for (int i = 0; i < array.length; i++)
 		{
@@ -76,7 +95,7 @@ public class MyQueue
 	public String toString()
 	{
 		String x = "";
-		for (Object o : array)
+		for (String o : array)
 		{
 			if (o!= null)
 				x += o + " ";
