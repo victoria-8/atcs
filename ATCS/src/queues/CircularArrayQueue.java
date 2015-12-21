@@ -9,41 +9,63 @@ public class CircularArrayQueue
 
 	private int theSize; 
 
-	private Object[] elements;
+	private int[] elements;
 
 	public CircularArrayQueue(int capacity)
 	{ 
-		elements = new Object[capacity];
+		elements = new int[capacity];
 		head = 0;
 		tail = 0;
-		theSize = capacity;
+		theSize = 0;
 	} 
 
-	public void add(Object x) 
+	public void add(int x) 
 	{ 
-		if (elements.length < theSize)
+		if (tail < elements.length)
 		{
 			elements[tail] = x;
 			tail++;	
+			theSize++;
 		}
 		else
 		{
-			Object[] arr = new Object[elements.length * 2];
+			boolean elementInput = false;
 			for (int i = 0; i < elements.length; i++)
 			{
-				arr[i] = elements[i];
+				if (elements[i] == 0)
+				{
+					elements[i] = x;
+					//tail = i; //
+					elementInput = true;
+					return;
+				}
 			}
-			elements[tail] = x;
-			tail++;
-			elements = arr;
-			
+			if (!elementInput)
+			{
+				int[] arr = new int[elements.length * 2];
+				int count = 0;
+				for (int i = 0; i < elements.length-head; i++)
+				{
+					arr[i] = elements[head+i];
+					count++;
+				}
+				for (int i = 0; i < head; i++)
+				{
+					arr[count + i] = elements[i];
+					//count++;
+				}
+				elements = arr;
+				elements[tail] = x;
+				tail++;
+				head = 0;
+			}
 		}
 	} 
 
-	public Object remove() 
+	public int remove() 
 	{ 
-		Object x = elements[head];
-		elements[head] = null;
+		int x = elements[head];
+		elements[head] = 0;
 		head = head+1;
 		return x;
 	} 
@@ -52,6 +74,16 @@ public class CircularArrayQueue
 	{
 		return elements.length;
 	} 
+	
+	public String toString()
+	{
+		String x = "";
+		for (int i = 0; i < elements.length; i++)
+		{
+			x += elements[i] + " ";
+		}
+		return x;
+	}
 
 	
 }
