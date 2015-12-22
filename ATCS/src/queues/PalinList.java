@@ -7,49 +7,64 @@ import java.util.LinkedList;
 
 public class PalinList
 {
-	private Queue<String> queue;
-	private Stack<String> stack;
+	private Queue<String> queue = new LinkedList<String>();
+	private Stack<String> stack = new Stack<String>();
+	private String list;
 
 	public PalinList()
 	{
 		setList("");
+		
 	}
 
 	public PalinList(String list)
 	{
 		setList(list);
+		this.list = list;
 		
 	}
 
 	public void setList(String list)
 	{
+		this.list = list;
+		queue = new LinkedList<String>();
 		int lastSpace = 0;
-		for (int i = 0; i < list.length()-1; i++)
-		{
+		for (int i = 0; i < list.length(); i++)
+		{                                                                                                                                                                                                                                                                      
 			if (list.substring(i, i+1).equals(" "))
 			{
 				queue.add(list.substring(lastSpace, i));
-				stack.add(list.substring(lastSpace, i));
-				lastSpace = i;
+				//stack.add(list.substring(lastSpace, i-1));
+				lastSpace = i+1;
 			}
 		}
+		queue.add(list.substring(lastSpace));
 	}
 
 	public boolean isPalin()
 	{
-		String q = "";
-		for (String s : queue)
+		stack = new Stack<String>();
+//		for (String s : queue)
+//			System.out.println(s);
+		int size = queue.size();
+		for (int i = 0; i < size/2; i++)
 		{
-			q += s + " ";
+			stack.push(queue.poll());
 		}
-		String s = "";
-		for (String a : stack)
+		
+		if (size%2 == 1)
+			queue.poll();
+		
+		while (!queue.isEmpty())
 		{
-			s += a + " ";
+			if (!stack.pop().equals(queue.poll()))
+				return false;
 		}
-		return s.equals(q);
+		return true;
 	}
 
-
-	//write a toString method
+	public String toString()
+	{
+		return list;
+	}
 }
