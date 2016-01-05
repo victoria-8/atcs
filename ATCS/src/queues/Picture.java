@@ -2,72 +2,85 @@ package queues;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Line2D;
+import java.awt.geom.Line2D.Double;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Picture extends JPanel {
+public class Picture extends JFrame {
 	
-	private Queue<String> lines = new LinkedList<String>();
+private Queue<Double> lines = new LinkedList<Line2D.Double>();
 	
-  public Picture() {
+  public Picture() 
+  {
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  setSize(800, 800);
+	  setVisible(true);
   }
   
-  public void paintComponent(Graphics g) {
+  public void paint(Graphics g) {
 	  
 	int lastPoint = 0;
 	int lastPoint2 = 0;
-	  for (int i = 0; i < 10; i++)
-	 {
-		  int width = (int) (Math.random() * 500);
-		    int height = (int) (Math.random() * 500);
-		    g.setColor(Color.black);
-		    g.drawLine(lastPoint, lastPoint2, width, height);
-		    lastPoint = width;
-		    lastPoint2 = height;
-		    lines.add("" + lastPoint + " " + lastPoint2 + " " + width + " " + height);
-		    
-		  try 
-		  {  
-		   Thread.sleep(500);                 //1000 milliseconds is one second.
-			} 
-		  catch(InterruptedException ex) {
-			    Thread.currentThread().interrupt();
-			} 
+	  
+	for (int i = 0; i < 10; i++)
+	{
+		  
+		 int width = (int) (Math.random() * 500);
+		 int height = (int) (Math.random() * 500);
+		 g.setColor(Color.black);
+		 g.drawLine(lastPoint, lastPoint2, width, height);
+		 lines.add(new Line2D.Double(lastPoint, lastPoint2, width, height)); 
+		 lastPoint = width;
+		 lastPoint2 = height;
+		 
+		 try 
+		 {  
+		  Thread.sleep(400);                 
+		 } 
+		  catch(InterruptedException ex) 
+		  {
+			  Thread.currentThread().interrupt();
+		  } 
 	}
 	  
-//	  while (!lines.isEmpty())
-//	  {
-//		 String[] s = new String[4];
+	  while (!lines.isEmpty())
+	  {
+		  Line2D.Double line = lines.remove();
+		  g.setColor(Color.orange);
+		  g.drawLine((int)line.getX1(), (int)line.getY1(), 
+				  (int)line.getX2(), (int)line.getY2());
+		  System.out.println("hi");
+		  try 
+		  {  
+			  Thread.sleep(400);                 
+		  } 
+		  catch(InterruptedException ex) 
+		  {
+			  Thread.currentThread().interrupt();
+		  } 
+	  }
+	  //String[] s = new String[4];
 //		 int index = 0;
 //		  String line = lines.remove();
-//		  for (int i = 1; i < lines.size(); i++)
+//		  for (int i = 1; i < line.length()-1; i++)
 //		  {
-//			  if (line.substring(i-1, i).equals(" "))
+//			  if (line.length() != 0)
 //			  {
-//				 s[index] =  line.substring(0, i);
-//				 index++;
-//				 line = line.substring(i);
-//				 i = 0;
+//				  if (line.substring(i-1, i).equals(" "))
+//				  {
+//					 s[index] =  line.substring(0, i-1);
+//					 index++;
+//					 line = line.substring(i);
+//					 i = 1;
+//				  }
 //			  }
+//			 
 //		  }
-//		  g.setColor(Color.white);
-//		  g.drawLine(Integer.parseInt(s[0]), Integer.parseInt(s[1]), 
-//				  Integer.parseInt(s[2]), Integer.parseInt(s[3]));
-//	  }
-		
 		   
 	 }
-   
-  
-  
-  public static void main(String args[]) {
-    JFrame frame = new JFrame("Oval Sample");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add(new Picture());
-    frame.setSize(1000, 1000);
-    frame.setVisible(true);
-  }
+
 }
