@@ -30,8 +30,8 @@ public class Monster implements Comparable{
 	@Override
 	public int compareTo(Object m) 
 	{
-		if (((Monster) m).getHeight() <= height && 
-				((Monster) m).getWeight() <= weight && ((Monster) m).getAge() <= age)
+		if (((Monster) m).getHeight() >= height && 
+				((Monster) m).getWeight() >= weight && ((Monster) m).getAge() >= age)
 		{
 			return -1;
 		}
