@@ -72,10 +72,10 @@ public class MathSet
 		Set<Integer> s = new TreeSet<Integer>();
 		for (Integer i : one)
 		{
-			if (two.add(i)==true)
+			if (two.contains(i))
 			{
 				s.add(i);
-				two.remove(i);
+				//two.remove(i);
 			}
 		}
 		return s;
@@ -86,10 +86,10 @@ public class MathSet
 		Set<Integer> s = new TreeSet<Integer>();
 		for (Integer i : two)
 		{
-			if (one.add(i)==true)
+			if (!one.contains(i))
 			{
 				s.add(i);
-				one.remove(i);
+				//one.remove(i);
 			}
 		}
 		return s;
@@ -97,23 +97,11 @@ public class MathSet
 	
 	public Set<Integer> symmetricDifference()
 	{		
-		Set<Integer> s = new TreeSet<Integer>();
-		for (Integer i : one)
-		{
-			if (two.add(i)==false)
-			{
-				s.add(i);
-				two.remove(i);
-			}
-		}
-		for (Integer i : two)
-		{
-			if (one.add(i)==false)
-			{
-				s.add(i);
-				one.remove(i);
-			}
-		}
+		Set<Integer> s = differenceAMinusB();
+		
+		s.addAll(differenceBMinusA());
+		
+		
 		return s;
 	}	
 	
