@@ -31,7 +31,9 @@ public class Histogram
 	}
 	
 	public void setSentence(String sent)
-	{String[] words = sent.split(" ");
+	{
+		histogram.clear();
+		String[] words = sent.split(" ");
 	for (String s : words)
 	{
 		if (!histogram.containsKey(s))
@@ -54,17 +56,17 @@ public class Histogram
 		while (entries.hasNext()) {
 		    Map.Entry<String, Integer> entry = entries.next();
 		    int value = entry.getValue();
-		    System.out.print(entry.getKey() + "\t");
+		   output += entry.getKey() + "\t";
 
 		    for (int i = 0; i < value; i++)
 		    {
-		    	System.out.print("*");
+		    	output+= "*";
 		    }
 		    
-		    System.out.println();
+		   output+="\n";
 		}
 		
 		String allStars="";
-		return "" + "\n\n";
+		return output + "\n\n";
 	}
 }
