@@ -22,7 +22,7 @@ public class Acronyms
 		{
 			if (i > 1)
 			{
-				s += words[i] + " ";
+				s += " " + words[i];
 			}
 		}
 		acronymTable.put(words[0], s);
