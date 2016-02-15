@@ -36,5 +36,15 @@ public class TeamSet {
 		}
 		return lightSet;
 	}
+	
+	public String toString()
+	{
+		String s = "";
+		for (Wrestler w : set)
+		{
+			s += w.toString() + "\n";
+		}
+		return s;
+	}
 
 }
