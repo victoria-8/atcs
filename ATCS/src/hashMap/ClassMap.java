@@ -5,57 +5,49 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeSet;
 
 import sets.Wrestler;
 
 public class ClassMap {
 	
-	private HashMap<String, ArrayList<Student>> map;
+	private HashMap<String, TreeSet<Student>> map;
 	
 	public ClassMap()
 	{
-		map = new HashMap<String, ArrayList<Student>>();
+		map = new HashMap<String, TreeSet<Student>>();
 	}
 	
 	public void addStudent(Student s)
 	{
-		if (map.size() == 0 || !map.containsKey(s.getClub()))
+		if (!map.containsKey(s.getClub()))
 		{
-			ArrayList<Student> list = new ArrayList<Student>();
+			TreeSet<Student> list = new TreeSet<Student>();
 			list.add(s);
 			map.put(s.getClub(), list);
 		}
 		else
 		{
-			Iterator <Map.Entry<String, ArrayList<Student>>> entries = map.entrySet().iterator();
-			while (entries.hasNext())
-			{
-			    Map.Entry<String, ArrayList<Student>> entry = entries.next();
-
-				if (entry.getKey().equals(s.getClub()))
-				{
-					ArrayList<Student> list = entry.getValue();
-					list.add(s);
-					map.put(s.getClub(), list);
-				}
-			}
+			TreeSet<Student> set = map.get(s.getClub());
+			set.add(s);
+			map.put(s.getClub(), set);
 		}
 	}
 	
 	public String toString()
 	{
 		String s = "";
-		Iterator<Map.Entry<String, ArrayList<Student>>> entries = map.entrySet().iterator();
+		Iterator<Map.Entry<String, TreeSet<Student>>> entries = map.entrySet().iterator();
 		while (entries.hasNext())
 		{
-		    Map.Entry<String, ArrayList<Student>> entry = entries.next();
+		    Map.Entry<String, TreeSet<Student>> entry = entries.next();
 		    s += entry.getKey() + "\t" + entry.getValue() + "\n";
 
 		}
 		return s;
 	}
 	
-	public ArrayList<Student> getNames(String club)
+	public TreeSet<Student> getNames(String club)
 	{
 		return map.get(club);
 	}

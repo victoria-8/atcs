@@ -16,15 +16,18 @@ public class ClubMapTester {
 			String line;
 			while((line = br.readLine()) != null) 
 			{
-				String[] a = line.split(" ");
+				String[] a = line.split("\t");
+				
 				Student s = new Student(a[0], a[1], a[2], a[3]);
 				map.addStudent(s);
 				
 			     
 			}
 			System.out.println(map);
-			System.out.println(map.getNames("Math"));
+			System.out.println("Math = " + map.getNames("Math"));
 		}
+		
+		
 	}
 
 }

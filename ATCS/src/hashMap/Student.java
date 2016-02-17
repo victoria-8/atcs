@@ -1,6 +1,6 @@
 package hashMap;
 
-public class Student {
+public class Student implements Comparable{
 	
 	private String last;
 	private String first;
@@ -34,6 +34,20 @@ public class Student {
 	{
 		return club;
 	}
+	
+	public int compareTo(Object s)
+	{
+		Student a = (Student)s;
+		
+		return (last.compareTo(a.getLast()));
+	}
+	
+	public String toString()
+	{
+		return "\n\t" + last + " " + first;
+	}
+
+	
 	
 
 }
