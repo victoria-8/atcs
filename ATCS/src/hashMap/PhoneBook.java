@@ -20,7 +20,8 @@ public class PhoneBook {
 	public PhoneBook(int numSlots)
 	{
 		table = new Hashtable<String,TreeSet<PhoneEntry>>(numSlots);
-		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+		char[] alphabet = //"ZYXWVUTSRQPONMLKJIHGFEDCBA".toCharArray();
+				"ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		for (char c : alphabet)
 		{
 			String s = "" +c;
@@ -42,8 +43,12 @@ public class PhoneBook {
 		Set<String> keys = table.keySet();
 		for (String key : keys)
 		{
-			System.out.print(key + "\t");
-			System.out.println(table.get(key));
+			if (table.get(key).size() != 0)
+			{
+				System.out.print(key + "\t");
+				System.out.println(table.get(key));
+			}
+			
 		}
 	}
 	
@@ -91,6 +96,45 @@ public class PhoneBook {
 	}
 	
 	public String lookup(String lookfor)
+	{
+		Set<String> keys = table.keySet();
+		for (String key : keys)
+		{
+			TreeSet<PhoneEntry> set = table.get(key);
+			for (PhoneEntry p : set)
+			{
+				if (p.getName().equals(lookfor))
+				{
+					return p.getNum();
+				}
+			}
+		}
+		return null;
+	}
+	
+	public boolean changeNumber(String lookfor, String newNumb)
+	{
+		Set<String> keys = table.keySet();
+		for (String key : keys)
+		{
+			TreeSet<PhoneEntry> set = table.get(key);
+			for (PhoneEntry p : set)
+			{
+				if (p.getName().equals(lookfor))
+				{
+					p.changeNum(newNumb);
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+	
+	public String toString()
+	{
+		return table.toString();
+	}
 	
 	
 

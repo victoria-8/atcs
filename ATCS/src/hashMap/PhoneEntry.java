@@ -24,7 +24,19 @@ public class PhoneEntry implements Comparable{
 	@Override
 	public int compareTo(Object arg0) {
 		
-		return name.compareTo((String)arg0);
+		PhoneEntry p = (PhoneEntry)arg0;
+		return name.compareTo(p.getName());
+	}
+	
+	public void changeNum(String nn)
+	{
+		number = nn;
+	}
+	
+	public String toString()
+	{
+		return name + "\t" + number;
+				
 	}
 	
 	
