@@ -66,12 +66,43 @@ public class BinarySearchTree
 	}
 
 	//add preOrder, postOrder, and revOrder
+	public void postOrder()
+	{
+//		TreeNode node = root;
+//		while (root.getLeft() != null)
+//			node = root.getLeft();
+//		System.out.println("o");
+		
+		postOrder(root);
+
+	}
+	public void postOrder(TreeNode tree)
+	{
+		if(root == null)
+		{
+			return;
+		}
+	
+		preOrder(tree.getLeft());
+		preOrder(tree.getRight());
+		System.out.print(tree.getValue() + " ");
+	}
 	
 	
+	public void reverseOrder()
+	{
+		reverseOrder(root);
+	}
 	
 	
-	
-	
+	public void reverseOrder(TreeNode tree)
+	{
+		if (tree != null){
+			reverseOrder(tree.getRight());
+			System.out.print(tree.getValue() + " ");
+			reverseOrder(tree.getLeft());
+		}
+	}
 	
 
 
@@ -90,27 +121,38 @@ public class BinarySearchTree
 		else
 			return 1+getNumLevels(tree.getRight());
 	}
-
-
-
-	//add getNumLeaves, getWidth, getHeight, getNumNodes, and isFull
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
+	public int getNumLeaves()
+	{
+		return getNumLeaves(root);
+	}
 	
+	public int getNumLeaves(TreeNode tree)
+	{
+		if (tree.getLeft() == null && tree.getRight() == null)
+			return 1;
+		
+		return getNumLeaves(tree.getLeft()) + getNumLeaves(tree.getRight());
+	}
 	
+	public int getWidth()
+	{
+		return getWidth(root);
+	}
+	
+	private int getWidth(TreeNode tree)
+	{
+		
+		if (tree == null)
+			return 1 + getWidth(tree.getLeft()) + getWidth(tree.getRight());
+		else if (getWidth(tree.getLeft()) > getWidth(tree.getRight()))
+			return 1 + getWidth(tree.getLeft());
+		else
+			return 1 + getWidth(tree.getRight());
+	
+			
+	}
+
 	//search
 	
 	//maxNode

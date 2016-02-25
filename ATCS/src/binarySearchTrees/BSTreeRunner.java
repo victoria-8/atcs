@@ -15,7 +15,16 @@ public class BSTreeRunner
  		tree.add(85);
  		tree.add(98);
  		tree.inOrder();
- 		tree.preOrder();
+ 		tree.preOrder(); 	
+ 		System.out.println();
+ 		//tree.postOrder();
+ 		System.out.println();
+ 		tree.reverseOrder();
+ 		System.out.println();
+ 		System.out.println("numLeaves = " + tree.getNumLeaves());
+ 		System.out.println("numLevels = " + tree.getNumLevels());
+ 		System.out.println("width = " + tree.getWidth());
+
 
 
  		
