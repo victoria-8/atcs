@@ -137,23 +137,79 @@ public class BinarySearchTree
 	
 	public int getWidth()
 	{
-		return getWidth(root);
+		int i = getNumLevels();
+		int maxWidth = 0;
+
+		while (i>0)
+		{
+			if (getWidth(root, i) > maxWidth)
+				maxWidth = getWidth(root, i);
+			System.out.println(maxWidth);
+			i--;
+		}
+
+		return maxWidth;
+		
 	}
 	
-	private int getWidth(TreeNode tree)
+	private int getWidth(TreeNode tree, int depth)
 	{
 		
 		if (tree == null)
-			return 1 + getWidth(tree.getLeft()) + getWidth(tree.getRight());
-		else if (getWidth(tree.getLeft()) > getWidth(tree.getRight()))
-			return 1 + getWidth(tree.getLeft());
+			return 0;
+		if (depth == 1)
+			return 1;
 		else
-			return 1 + getWidth(tree.getRight());
+			return getWidth(tree.getLeft(), depth - 1) + getWidth(tree.getRight(), depth - 1);
 	
-			
 	}
-
+	
+	public int getHeight()
+	{
+		return getNumLevels() - 1;
+	}
+	
+	public int getNumNodes()
+	{
+		return getNumNodes(root);
+	}
+	private int getNumNodes(TreeNode tree)
+	{
+		if (tree.getLeft() == null && tree.getRight() == null)
+			return 1;
+		
+		return 1 + getNumNodes(tree.getLeft()) + getNumNodes(tree.getRight());
+	
+	}
+//	public String toString()
+//	{
+//		return toTree(root);
+//		
+//	}
+//	private String toTree(TreeNode tree)
+//	{
+//		if (tree.getLeft() == null && tree.getRight() == null)
+//			return "" + tree.getValue() + "\t";
+//		
+//		return toTree(tree.getLeft()) + toTree(tree.getRight());
+//	
+//	}
+	
+	public boolean isFullTree()
+	{
+		return isFullTree(root);
+	}
+	private boolean isFullTree(TreeNode tree)
+	{
+		return (tree.getLeft() != null && tree.getRight() != null);
+	}
+	
 	//search
+	public boolean search(Comparable value)
+	{
+		
+	}
+	
 	
 	//maxNode
 	
@@ -165,14 +221,4 @@ public class BinarySearchTree
 	
 	//remove
 
-
-	public String toString()
-	{
-		return "";
-	}
-
-	private String toString(TreeNode tree)
-	{
-		return "";
-	}
 }
