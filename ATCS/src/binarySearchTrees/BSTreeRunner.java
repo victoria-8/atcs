@@ -26,8 +26,15 @@ public class BSTreeRunner
  		//System.out.println("width = " + tree.getWidth());
  		System.out.println("height = " + tree.getHeight());
  		System.out.println("num nodes = " + tree.getNumNodes());
- 		//System.out.println("tree = " + tree.toString());
+ 		System.out.println("tree = ");
  		System.out.println("full = " + tree.isFullTree());
+ 		System.out.println("search(90)= " + tree.search(90));
+ 		//System.out.println("search(100)= " + tree.search(100));
+ 		System.out.println("getLargest= " + tree.getLargest());
+ 		System.out.println("getSmallest= " + tree.getSmallest());
+
+
+
 
 
 

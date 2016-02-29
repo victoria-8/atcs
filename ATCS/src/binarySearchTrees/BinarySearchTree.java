@@ -38,7 +38,7 @@ public class BinarySearchTree
    public void inOrder()
 	{
 		inOrder(root);
-		System.out.println("\n\n");
+		System.out.println("\n");
 	}
 
 	private void inOrder(TreeNode tree)
@@ -181,15 +181,25 @@ public class BinarySearchTree
 		return 1 + getNumNodes(tree.getLeft()) + getNumNodes(tree.getRight());
 	
 	}
-//	public String toString()
-//	{
-//		return toTree(root);
-//		
-//	}
+	public void display(int level)
+	{
+		
+	}
+	
+	
 //	private String toTree(TreeNode tree)
 //	{
-//		if (tree.getLeft() == null && tree.getRight() == null)
-//			return "" + tree.getValue() + "\t";
+//	
+////		if (tree.getLeft() != null && tree.getRight() != null)
+////			return "" + tree.getValue() + "\t" + toTree(tree.getLeft()) + "\t"
+////					+ toTree(tree.getRight());
+//		if (tree.getLeft() != null && tree.getRight() != null)
+//			return "" + tree.getValue() + "\n" + tree.getLeft().getValue() + "\t" 
+//		+ tree.getRight().getValue() + "\t" + toTree(tree.getLeft()) + toTree(tree.getRight());
+////					+ toTree(tree.getRight());;
+//	else if (tree.getLeft() == null && tree.getRight() == null)
+//			return "\n" + tree.getValue() + "\t";
+//	
 //		
 //		return toTree(tree.getLeft()) + toTree(tree.getRight());
 //	
@@ -204,10 +214,40 @@ public class BinarySearchTree
 		return (tree.getLeft() != null && tree.getRight() != null);
 	}
 	
-	//search
 	public boolean search(Comparable value)
 	{
-		
+		return search(root, value);
+	}
+	//search
+	private boolean search(TreeNode tree, Comparable value)
+	{
+		if (tree.getValue() == value)
+		{
+			return true;
+		}
+		return search(tree.getLeft(), value) || search(tree.getRight(), value);	
+	}
+	public Comparable getLargest()
+	{
+		return getLargest(root);
+	}
+	private Comparable getLargest(TreeNode tree)
+	{
+		if (tree.getRight() == null)
+			return tree.getValue();
+		else
+			return getLargest(tree.getRight());
+	}
+	public Comparable getSmallest()
+	{
+		return getSmallest(root);
+	}
+	private Comparable getSmallest(TreeNode tree)
+	{
+		if (tree.getLeft() == null)
+			return tree.getValue();
+		else
+			return getSmallest(tree.getLeft());
 	}
 	
 	
