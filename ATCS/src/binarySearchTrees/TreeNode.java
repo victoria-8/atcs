@@ -56,4 +56,9 @@ public class TreeNode implements Treeable
 	{
 		rightTreeNode = (TreeNode)right;
 	}
+	
+	public String toString()
+	{
+		return "" + treeNodeValue;
+	}
 }
