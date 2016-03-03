@@ -8,6 +8,9 @@ public class PhoneEntry {
 
 	// constructor 
 
+	public PhoneEntry(){
+		
+	}
 	public PhoneEntry(String myName, String myNumber, 
 			PhoneEntry left, PhoneEntry right) { 
 
@@ -23,5 +26,30 @@ public class PhoneEntry {
 
 	return "Name: " + name + " Number: " + number; 
 
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	public String getNumber()
+	{
+		return number;
+	}
+	public void setLeft(PhoneEntry p)
+	{
+		leftEntry = p;
+	}
+	public void setRight(PhoneEntry p)
+	{
+		rightEntry = p;
+	}
+	public PhoneEntry getLeft()
+	{
+		return leftEntry;
+	}
+	public PhoneEntry getRight()
+	{
+		return rightEntry;
 	}
 }
