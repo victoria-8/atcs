@@ -8,7 +8,7 @@ public class PhoneEntry {
 
 	// constructor 
 
-	public PhoneEntry(){
+	public PhoneEntry(String myName, String myNumber){
 		
 	}
 	public PhoneEntry(String myName, String myNumber, 

@@ -1,8 +1,10 @@
-package binarySearchTrees;
+package phones;
 
 import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.IOException;
+
 
 public class PhoneBookTester {
 	public static void main(String[]args) throws IOException
@@ -14,11 +16,11 @@ public class PhoneBookTester {
 			while((line = br.readLine())!=null)
 			{
 				String[] array = line.split("\t");
-				PhoneEntry e = new PhoneEntry(array[0],array[1],null,null);
-				p.add(e);
+				p.add(array[0],array[1]);
 				
 			}
 			
+			p.levelOrderTraversal();
 			
 		}
 		
