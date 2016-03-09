@@ -28,9 +28,9 @@ public class PhoneEntry implements Comparable{
 		return name;
 	}
 	
-	public Comparable getNum()
+	public String getNum()
 	{
-		return number;
+		return "" + number;
 	}
 
 	@Override
@@ -73,6 +73,10 @@ public class PhoneEntry implements Comparable{
 	public String toString()
 	{
 		return name + " " + number;
+	}
+	public void setValue(Comparable nam)
+	{
+		name = nam;
 	}
 
 }

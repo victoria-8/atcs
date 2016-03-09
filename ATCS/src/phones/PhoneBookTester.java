@@ -20,7 +20,16 @@ public class PhoneBookTester {
 				
 			}
 			
-			p.levelOrderTraversal();
+			p.display();
+			System.out.println("Lazo = " + p.search("Lazo"));
+			System.out.println("9810208 = " + p.reverseLookup("9810208"));
+			System.out.println("remove(Lazo) = ");
+			p.remove("Lazo");
+			p.display();
+
+			
+
+
 			
 		}
 		

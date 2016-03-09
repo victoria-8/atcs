@@ -173,38 +173,38 @@ public class PhoneBook
 	
 	}
 	
-//	public PhoneEntry remove(Comparable val)
-//	{
-//		return remove(val, root);
-//	}
+	public PhoneEntry remove(Comparable val)
+	{
+		return remove(val, root);
+	}
 	
-//	private PhoneEntry remove(Comparable val, PhoneEntry tree)
-//	{
-//	
-//		if(tree!=null)
-//		{
-//			int dirTest = val.compareTo(tree.getValue());
-//			if (dirTest<0)
-//				tree.setLeft(remove(val, tree.getLeft()));
-//			else if (dirTest>0)
-//				tree.setRight(remove(val, tree.getRight()));
-//			else
-//			{
-//				if (tree.getRight()==null)
-//				{
-//					tree = tree.getLeft();
-//					
-//				}
-//				else
-//				{
-//					PhoneEntry successor = (PhoneEntry)(getSmallest(tree.getRight()));
-//					tree.setValue(successor.getValue());
-//					tree.setRight(remove(successor.getValue(), tree.getRight()));
-//				}
-//			}
-//		}
-//		return tree;
-//	}
+	private PhoneEntry remove(Comparable val, PhoneEntry tree)
+	{
+	
+		if(tree!=null)
+		{
+			int dirTest = val.compareTo(tree.getValue());
+			if (dirTest<0)
+				tree.setLeft(remove(val, tree.getLeft()));
+			else if (dirTest>0)
+				tree.setRight(remove(val, tree.getRight()));
+			else
+			{
+				if (tree.getRight()==null)
+				{
+					tree = tree.getLeft();
+					
+				}
+				else
+				{
+					PhoneEntry successor = (PhoneEntry)(getSmallest(tree.getRight()));
+					tree.setValue(successor.getValue());
+					tree.setRight(remove(successor.getValue(), tree.getRight()));
+				}
+			}
+		}
+		return tree;
+	}
 	
 	
 //	private String toTree(PhoneEntry tree)
@@ -234,21 +234,44 @@ public class PhoneBook
 		return (tree.getLeft() != null && tree.getRight() != null);
 	}
 	
-	public boolean search(Comparable value)
+	public Comparable search(Comparable value)
 	{
 		return search(root, value);
 	}
 	//search
-	private boolean search(PhoneEntry tree, Comparable value)
+	private Comparable search(PhoneEntry tree, Comparable value)
 	{
-		if (tree != null && tree.getValue() == value)
+		if (tree != null && tree.getValue().equals(value))
 		{
-			return true;
+			return tree.getNum();
 		}
 		else if (tree==null)
-			return false;
-		return search(tree.getLeft(), value) || search(tree.getRight(), value);	
+			return null;
+		if (search(tree.getLeft(), value) != null)
+			return search(tree.getLeft(), value);
+		else
+			return search(tree.getRight(), value);
 	}
+	
+	public Comparable reverseLookup(String number)
+	{
+		return reverseLookup(root, number);
+	}
+	
+	private String reverseLookup(PhoneEntry tree, String num)
+	{
+		if (tree != null && tree.getNum().equals(num))
+		{
+			return "" + tree.getValue();
+		}
+		else if (tree==null)
+			return null;
+		if (reverseLookup(tree.getLeft(), num) != null)
+			return "" + reverseLookup(tree.getLeft(), num);
+		else
+			return "" + reverseLookup(tree.getRight(), num);
+	}
+	
 	public Comparable getLargest()
 	{
 		return getLargest(root);
@@ -286,8 +309,8 @@ public class PhoneBook
 	{
 		if (tree==null)
 			System.out.println();
-		else if(level==0)
-			System.out.print(tree + " " );
+	else if(level==0)
+			System.out.println(tree + " " );
 		else
 		{
 			display(tree.getLeft(), level-1);
