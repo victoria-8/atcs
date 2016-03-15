@@ -308,7 +308,7 @@ public class PhoneBook
 	private void display(PhoneEntry tree, int level)
 	{
 		if (tree==null)
-			System.out.println();
+			return;
 	else if(level==0)
 			System.out.println(tree + " " );
 		else

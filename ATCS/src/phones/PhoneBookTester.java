@@ -21,10 +21,14 @@ public class PhoneBookTester {
 			}
 			
 			p.display();
+			System.out.println("-------------------------------");
 			System.out.println("Lazo = " + p.search("Lazo"));
 			System.out.println("9810208 = " + p.reverseLookup("9810208"));
 			System.out.println("remove(Lazo) = ");
 			p.remove("Lazo");
+			System.out.println("Lazo = " + p.search("Lazo"));
+			System.out.println("-------------------------------");
+
 			p.display();
 
 			

@@ -1,3 +1,5 @@
+package binarySearchTrees;
+
 public class HistoNode
 {
 	private Comparable data;
@@ -53,5 +55,4 @@ public class HistoNode
 		right=rt;
 	}
 }
-
 
