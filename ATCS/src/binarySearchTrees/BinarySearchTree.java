@@ -3,7 +3,7 @@ import static java.lang.System.*;
 
 public class BinarySearchTree
 {
-	private TreeNode root;
+	public TreeNode root;
 
 	public BinarySearchTree()
 	{
@@ -292,7 +292,14 @@ public class BinarySearchTree
 		}
 	}
 	
-	
+	public void setRoot(TreeNode root)
+	{
+		this.root = root;
+	}
+	public TreeNode getRoot()
+	{
+		return root;
+	}
 
 	
 
