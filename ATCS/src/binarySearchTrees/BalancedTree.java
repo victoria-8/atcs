@@ -6,20 +6,20 @@ public class BalancedTree extends BinarySearchTree{
 	}
 	public TreeNode balance(int arr[])
 	{
-		return balance(arr, 0, arr.length-1, null);
+		return balance(arr, 0, arr.length-1);
 	}
-	private TreeNode balance(int[] arr, int start, int end, TreeNode node)
+	private TreeNode balance(int[] arr, int start, int end)
 	{
-	  if (root == null)
+	  if (start > end)
 	  {
-		  root = new TreeNode(arr[(start + end) / 2]);
+		  return null;
 	  }
 	  
-	  int middle = (start + end)/2;
+	  int middle = start + (end-start)/2;
       TreeNode newNode = new TreeNode(arr[middle]);
 	  
-    	  node.setLeft(balance(arr, start, middle, newNode));
-	      node.setRight(balance(arr, middle, end, newNode));
+    	  newNode.setLeft(balance(arr, start, middle-1));
+	      newNode.setRight(balance(arr, middle + 1, end));
 	  
 	    return newNode;
     }
@@ -31,13 +31,14 @@ public class BalancedTree extends BinarySearchTree{
 		BalancedTree x = new BalancedTree(data);
 		System.out.println("InOrder");
 		x.inOrder();
-		TreeNode temp = x.getRoot();
-		System.out.println("Right Branch");
-		while(temp!=null)
-		{
-			System.out.print(temp+" ");
-			temp=temp.getRight();
-		}
+	//	TreeNode temp = x.getRoot();
+//		System.out.println("Right Branch");
+//		while(temp!=null)
+//		{
+//			System.out.print(temp+" ");
+//			temp=temp.getRight();
+//		}
+		x.levelOrderTraversal();
 		
 	}
 }
