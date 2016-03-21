@@ -1,6 +1,6 @@
 package morseCode;
 
-public class MorseNode {
+public class MorseNode implements Comparable{
 	
 	private String morse;
 	private String letter;
@@ -28,6 +28,14 @@ public class MorseNode {
 	public String getMorse()
 	{
 		return morse;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		MorseNode other = (MorseNode)arg0;
+		String otherS = other.getMorse();
+		for ()
+		return 0;
 	}
 
 }

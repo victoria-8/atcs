@@ -1,6 +1,11 @@
 package binarySearchTrees;
 
 public class BalancedTree extends BinarySearchTree{
+	
+	public BalancedTree()
+	{
+		
+	}
 	public BalancedTree(int[] data){
 		setRoot((balance(data)));
 	}
