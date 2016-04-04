@@ -17,6 +17,7 @@ public class MorseTree extends BinarySearchTree
 	public MorseTree()
 	{
 		//root = new MorseNode("start");
+		
 		root = null;
 		String morse = "0-9O.8M Q G Z7T Y K C  N X D B6/1J W P A   R L E2- U F I3V S4H5";
 		
@@ -147,7 +148,40 @@ public class MorseTree extends BinarySearchTree
 
 		}
 	}
+	
+	public String translate(String morse)
+	{
+		MorseNode currentNode;
+		String message = "";
+		int lastIndex = 0;
+		for(int i = 1; i < morse.length(); i++)
+		{
+			System.out.println("msg = " + message);
 
+			if (morse.substring(i-1, i).equals(" ") || i == morse.length()-1 
+					|| morse.substring(i-1, i).equals("/"))
+			{
+				currentNode = translate(morse.substring(lastIndex, i),1, root);
+				if (currentNode != null)
+					message += currentNode.getValue();
+				lastIndex = i;
+			}
+			
+		}
+		return message;
+	}
+	
+	private MorseNode translate(String morse, int index, MorseNode node)
+	{
+		if (index >= morse.length())
+			return node;
+		else if (morse.substring(index-1, index).equals("_"))
+			return translate(morse,index+1,node.getLeft());
+		else if (morse.substring(index-1, index).equals("."))
+			return translate(morse,index+1,node.getRight());
+		return null;
+			
+	}
 	
 
 	
@@ -168,6 +202,7 @@ public class MorseTree extends BinarySearchTree
 //		}
 		MorseTree tree = new MorseTree();
 		tree.display();
+		System.out.println(tree.translate("__ _.__/ .._. . . _/"));
 	}
 
 }
