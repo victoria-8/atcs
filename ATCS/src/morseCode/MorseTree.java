@@ -1,70 +1,28 @@
 package morseCode;
-import hashMap.ClassMap;
-import hashMap.Student;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import phones.PhoneEntry;
-import binarySearchTrees.BinarySearchTree;
-import binarySearchTrees.TreeNode;
-
-public class MorseTree extends BinarySearchTree
+public class MorseTree
 {
 	private MorseNode root;
 	private String[] arr;
 	public MorseTree()
 	{
-		//root = new MorseNode("start");
-		
 		root = null;
-		String morse = "0-9O.8M Q G Z7T Y K C  N X D B6/1J W P A   R L E2- U F I3V S4H5";
-		
+		String morse = "0-9O8. M Q G7Z T Y K C N X D B6/1J W P A   R L E2- U F I3V S4H5";
 		add(morse);
 	}
 	
 	public void add(String s)
 	{
 		String[] arr = new String[s.length()];
-		for (int i = 1; i < s.length(); i++)
+		for (int i = 1; i <= s.length(); i++)
 		{
 			arr[i-1] = s.substring(i-1,i);
 		}
 		root = (balance(arr));
 		
-//		System.out.println(arr[0]);
-//		int index = 1;
-//		while (index < 72)
-//		{
-//			add(arr[index], add(arr[index-1],root,index-1), index);
-//			index++;
-//		}
-		
 	}
 	
 
-	private MorseNode add(String val, MorseNode node, int index)
-	{
-		//System.out.println(val);
-
-		if(node == null)
-		{
-			node = new MorseNode(val,index);
-		}
-	   else
-	   {
-		   MorseNode n = new MorseNode(val, index);
-			int dirTest = node.compareTo(n);
-			
-			if(dirTest <= 0)
-				node.setLeft(add(arr[index+1], node.getLeft(),index++));
-			else if(dirTest > 0)
-				node.setRight(add(arr[index+1], node.getRight(),index++));
-	   }
-	   
-	   return node;
-	}
 	
 	
 	public MorseNode balance(String arr[])
@@ -88,29 +46,6 @@ public class MorseTree extends BinarySearchTree
 	    return newNode;
     }
 	
-//	private MorseNode balance(MorseNode node, String[] arr, int start, int end)
-//	{
-//	  if (start > end)
-//	  {
-//		  return null;
-//	  }
-//	  int middle = start + (end-start)/2;
-//	  MorseNode newNode = new MorseNode(arr[middle],middle);
-//
-//	  if (root == null)
-//		  root = newNode;
-//	  else
-//	  {
-//	      //System.out.println(arr[middle]);
-//
-//	     // System.out.println(newNode);
-//	    
-//	      node.setLeft(balance(node, arr, start, middle-1));
-//		  node.setRight(balance(node, arr, middle + 1, end));
-//	  }
-//	  	System.out.println(newNode);
-//	    return newNode;
-//    }
 	public int getNumLevels()
 	{
 		return getNumLevels(root);
@@ -138,9 +73,9 @@ public class MorseTree extends BinarySearchTree
 	private void display(MorseNode tree, int level)
 	{
 		if (tree==null)
-			return;
+			System.out.println("");
 	else if(level==0)
-			System.out.print(tree + " " );
+			System.out.print(tree + " ");
 		else
 		{
 			display(tree.getLeft(), level-1);
@@ -148,7 +83,46 @@ public class MorseTree extends BinarySearchTree
 
 		}
 	}
-	
+	public String reverseTranslate(String m)
+	{
+		String trans = "";
+		String morse = "0-9O8. M Q G7Z T Y K C N X D B6/1J W P A   R L E2- U F I3V S4H5";
+		int searchIndex;
+		for (int i = 1; i <= m.length(); i++)
+		{
+			for (int j = 1; j <= morse.length(); j++)
+			{
+				if (morse.substring(j-1,j).equals(m.substring(i-1,i)))
+				{
+					searchIndex = j-1;
+					String s = reverseTranslate(root,searchIndex,"");
+					trans = trans + " " + s;
+					break;
+				}
+				else if (m.substring(i-1,i).equals(" "))
+				{
+					trans = trans + "/";
+					break;
+				}
+				
+			}
+		}
+		return trans;
+	}
+	private String reverseTranslate(MorseNode node, int index, String trans)
+	{
+		if (node == null)
+			return trans;
+		if (node.getIndex() == index)
+			return trans;
+		else if (node.getIndex() > index)
+			return reverseTranslate(node.getLeft(),index,trans+"_");
+		else if (node.getIndex() < index)
+			return reverseTranslate(node.getRight(),index,trans+".");
+		return null;
+			
+		
+	}
 	public String translate(String morse)
 	{
 		MorseNode currentNode;
@@ -156,10 +130,10 @@ public class MorseTree extends BinarySearchTree
 		int lastIndex = 0;
 		for(int i = 1; i < morse.length(); i++)
 		{
-			System.out.println("msg = " + message);
+			//System.out.println("msg = " + message);
 
-			if (morse.substring(i-1, i).equals(" ") || i == morse.length()-1 
-					|| morse.substring(i-1, i).equals("/"))
+			
+			if (morse.substring(i-1, i).equals(" ") || i == morse.length()-1 || morse.substring(i-1, i).equals("/"))
 			{
 				currentNode = translate(morse.substring(lastIndex, i),1, root);
 				if (currentNode != null)
@@ -168,7 +142,7 @@ public class MorseTree extends BinarySearchTree
 			}
 			
 		}
-		return message;
+		return message.replaceAll("/"," ");
 	}
 	
 	private MorseNode translate(String morse, int index, MorseNode node)
@@ -183,26 +157,18 @@ public class MorseTree extends BinarySearchTree
 			
 	}
 	
+	
 
 	
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
-//		try(BufferedReader br = new BufferedReader(new FileReader("File/morse")))
-//		{
-//			MorseTree tree = new MorseTree();
-//			String line;
-//			while((line = br.readLine()) != null) 
-//			{
-//				String[] a = line.split("\t");
-//				
-//				MorseNode node = new MorseNode(a[1]);
-//				node.setLetter(a[0]);
-//			}
-//			
-//		}
 		MorseTree tree = new MorseTree();
 		tree.display();
-		System.out.println(tree.translate("__ _.__/ .._. . . _/"));
+		String s = tree.translate("__ _.__/ .._. . . _/ ... __ . ._.. ._../ ._ _. _../ __ _.__/ _. ___ ... ./ ._. .._ _. ...  ");
+		System.out.println(s);
+		System.out.println(tree.reverseTranslate(s));
+		
+		
 	}
 
 }
