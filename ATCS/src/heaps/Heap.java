@@ -63,7 +63,7 @@ public class Heap
 	{
 		if (top >= list.size() || top*2 >=list.size())
 			return;
-		else if (list.get(top*2)>list.get(top))
+		else if (list.get(top*2)>list.get(top) && list.get(top*2+1)>list.get(top))
 		{
 				return;
 		}
@@ -80,6 +80,21 @@ public class Heap
 				list.set(top+1, list.get(top));
 				list.set(top, num2);
 				swapUp(top*2);
+			}
+		   
+		}
+		else if (list.get(top*2+1)<list.get(top))
+		{
+		   int num = list.get(top*2+1);
+		   list.set(top*2+1,list.get(top));
+		   list.set(top*2+1, num);
+		   swapUp(top*2+1);
+		   if (list.get(top+1)>list.get(top))
+			{
+			   int num2 = list.get(top+1);
+				list.set(top+1, list.get(top));
+				list.set(top, num2);
+				swapUp(top*2+1);
 			}
 		   
 		}
