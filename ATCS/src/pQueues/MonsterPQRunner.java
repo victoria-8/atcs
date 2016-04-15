@@ -31,7 +31,7 @@ public class MonsterPQRunner
 		System.out.println("getMin(): " + pq.remove());
 		for (Monster m : pq)
 		{
-			System.out.print("(" + m + ")" + " ");
+			System.out.println("(" + m + ")" + " ");
 		}
 		System.out.println("getMin(): " + pq.remove());
 

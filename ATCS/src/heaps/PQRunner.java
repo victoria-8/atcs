@@ -1,12 +1,11 @@
 package heaps;
 import java.util.Queue;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.PriorityQueue;
-
-import pQueues.Monster;
 
 public class PQRunner
 {
@@ -28,17 +27,21 @@ public class PQRunner
 			pq.add(m);
 		}
 		
-		for (Monster m : pq)
-		{
-			System.out.print("(" + m + ")" + " ");
-		}
+		pq.print();
 		
-		System.out.println("getMin(): " + pq.remove());
-		for (Monster m : pq)
-		{
-			System.out.print("(" + m + ")" + " ");
-		}
-		System.out.println("getMin(): " + pq.remove());
+		System.out.println();
+		System.out.println("getMin(): " +pq.remove());
+		System.out.println();
+
+		System.out.println("removeMin(): " );
+		pq.print();
+		System.out.println();
+
+		System.out.println("getMin(): " +pq.remove());
+		System.out.println();
+
+		System.out.println("removeMin(): " );
+		pq.print();
 
 			
 	}
