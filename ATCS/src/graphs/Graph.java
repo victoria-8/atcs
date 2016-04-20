@@ -9,6 +9,10 @@ public class Graph
 	private TreeMap<String, String> map;
 	private boolean[] checked;
 
+	public Graph()
+	{
+		
+	}
 	public Graph(String line)
 	{
 		if(map==null)
@@ -53,10 +57,6 @@ public class Graph
 			}
 			else{
 				String x=map.get(first);
-				if(x==null){
-					System.out.println(first+" "+second);
-					return false;
-				}
 					
 				for(int i=0;i<x.length();i++){
 					if(!placesUsed.contains(x.substring(i,i+1))){
