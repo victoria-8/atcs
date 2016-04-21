@@ -19,6 +19,7 @@ public class GraphRunner
 			if(y.check(z.charAt(0)+"", z.charAt(1)+"", "")){
 				System.out.println();
 				System.out.println(z.charAt(0)+" connects to "+ z.charAt(1));
+				System.out.println("shortest route = " + y.getShortestPath());
 			}
 			else
 				System.out.println(z.charAt(0)+" does not connect to "+ z.charAt(1));

@@ -21,7 +21,7 @@ public class ShortestPathGraph extends Graph
 	}
 	public int getShortestPath(String y)
 	{
-		System.out.println(check(first, second, placesUsed));
+		
 		
 		return -1;
 	}

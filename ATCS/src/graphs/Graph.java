@@ -1,5 +1,6 @@
 package graphs;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -8,6 +9,7 @@ public class Graph
 {
 	private TreeMap<String, String> map;
 	private boolean[] checked;
+	private ArrayList<Integer> paths;
 
 	public Graph()
 	{
@@ -39,8 +41,13 @@ public class Graph
 	}
 
 	public boolean directCheck(String first, String second){
+		paths = new ArrayList<Integer>();
 		if(first.equals(second))
+		{
+			paths.add(1);
 			return true;
+
+		}
 		if(!map.containsKey(first)||!map.containsKey(second)){
 			return false;
 		}
@@ -61,7 +68,11 @@ public class Graph
 				for(int i=0;i<x.length();i++){
 					if(!placesUsed.contains(x.substring(i,i+1))){
 						if(check(x.substring(i, i+1),second,placesUsed))
+						{
+							paths.add(i);
 							return true;
+
+						}
 					}
 							
 				}
@@ -77,7 +88,21 @@ public class Graph
 		
 	}
 	
-	
+	public int getShortestPath()
+	{
+		Iterator<Integer> i = paths.listIterator();
+		Integer num = i.next();
+
+		while (i.hasNext())
+		{
+			Integer num2 = i.next();
+			if (num2<num)
+				num = num2;
+		}
+		
+		
+		return num;
+	}
 
 	public String toString()
 	{
