@@ -16,7 +16,7 @@ public class ShortestPathGraphRunner
 		{
 			ShortestPathGraph y=new ShortestPathGraph(file.nextLine());
 			String z=file.nextLine();
-			if(y.check(z.charAt(0)+"", z.charAt(1)+"", "")){
+			if(y.check(z.charAt(0)+"", z.charAt(1)+"")){
 				System.out.println();
 				System.out.println(z.charAt(0)+" connects to "+ z.charAt(1));
 				System.out.println("shortest route = " + y.getShortestPath(z));

@@ -20,9 +20,16 @@ public class GraphRunner
 				System.out.println();
 				System.out.println(z.charAt(0)+" connects to "+ z.charAt(1));
 				System.out.println("shortest route = " + y.getShortestPath());
+				y.clearPath();
+
 			}
 			else
+			{
 				System.out.println(z.charAt(0)+" does not connect to "+ z.charAt(1));
+
+				y.clearPath();
+
+			}
 		}
 	}
 }

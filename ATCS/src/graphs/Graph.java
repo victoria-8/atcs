@@ -7,9 +7,10 @@ import java.util.TreeMap;
 
 public class Graph
 {
-	private TreeMap<String, String> map;
+	public TreeMap<String, String> map;
 	private boolean[] checked;
-	private ArrayList<Integer> paths;
+	private int shortestPath = 0;
+	
 
 	public Graph()
 	{
@@ -41,10 +42,9 @@ public class Graph
 	}
 
 	public boolean directCheck(String first, String second){
-		paths = new ArrayList<Integer>();
 		if(first.equals(second))
 		{
-			paths.add(1);
+			shortestPath++;
 			return true;
 
 		}
@@ -60,16 +60,16 @@ public class Graph
 	{
 		placesUsed+=first;
 			if(directCheck(first,second)){
+				shortestPath++;
 				return true;
 			}
 			else{
 				String x=map.get(first);
-					
 				for(int i=0;i<x.length();i++){
 					if(!placesUsed.contains(x.substring(i,i+1))){
 						if(check(x.substring(i, i+1),second,placesUsed))
 						{
-							paths.add(i);
+							shortestPath++;
 							return true;
 
 						}
@@ -88,22 +88,34 @@ public class Graph
 		
 	}
 	
-	public int getShortestPath()
+	public int getShortestPath(String first, String second, String placesUsed)
 	{
-		Iterator<Integer> i = paths.listIterator();
-		Integer num = i.next();
-
-		while (i.hasNext())
-		{
-			Integer num2 = i.next();
-			if (num2<num)
-				num = num2;
+		placesUsed+=first;
+		if(directCheck(first,second)){
+			shortestPath++;
+			return true;
 		}
-		
-		
-		return num;
+		else{
+			String x=map.get(first);
+			for(int i=0;i<x.length();i++){
+				if(!placesUsed.contains(x.substring(i,i+1))){
+					if(check(x.substring(i, i+1),second,placesUsed))
+					{
+						shortestPath++;
+						return true;
+
+					}
+				}
+						
+			}
+			return false;
+		}
 	}
 
+	public void clearPath()
+	{
+		shortestPath = 0;
+	}
 	public String toString()
 	{
 		String output="";
