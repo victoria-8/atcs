@@ -88,7 +88,7 @@ public class Graph
 		
 	}
 	
-	public int getShortestPath(String first, String second, String placesUsed)
+	public boolean getShortestPath(String first, String second, String placesUsed)
 	{
 		placesUsed+=first;
 		if(directCheck(first,second)){
@@ -110,6 +110,9 @@ public class Graph
 			}
 			return false;
 		}
+		//start with node, check all sides -> follow thru for each side
+			//if true, save num, start on next side
+			//if false, start on next side
 	}
 
 	public void clearPath()
