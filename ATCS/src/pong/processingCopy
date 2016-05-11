@@ -1,0 +1,79 @@
+//controls: 
+//player 1: a,z
+//player 2: k,m
+final int SCREEN_WIDTH = 900;
+final int SCREEN_LENGTH = 600;
+final int PAD_WIDTH = 10;
+final int PAD_LENGTH = SCREEN_WIDTH/8;
+int move1=0;
+int move2=PAD_LENGTH*3;
+PShape pad1, pad2, ball;
+boolean[] keys = new boolean[4];
+final int A = 0; //65
+final int Z = 1; //90
+final int K = 2; //75
+final int M = 3; //77
+
+void setup(){
+  size(SCREEN_WIDTH, SCREEN_LENGTH);
+  background(255,204,0);
+  //pad1 = createShape(RECT,0,move1,PAD_WIDTH,PAD_LENGTH);
+  //pad1.setFill(color(255));
+}
+
+void draw(){
+  if (keys[A])
+    move1+=5;
+  if (keys[Z])
+    move1-=5;
+  if (keys[K])
+    move2 += 5;
+  if (keys[M])
+    move2 -= 5;
+   fill(255);
+   rect(move1,move2,move1+PAD_WIDTH,move2+PAD_LENGTH);
+  //shape(pad1,move1,move2);
+  
+}
+
+void keyPressed(){
+  int button = key;
+  switch (button){
+    case 65:
+      keys[A] = true;
+      break;
+    case 90:
+      keys[Z] = true;
+      break;
+    case 75:
+      keys[K] = true;
+      break;
+    case 77:
+      keys[M] = true;
+      break;
+  }
+}
+
+void keyReleased(){
+  int button = key;
+  switch (button){
+    case 65:
+      keys[A] = false;
+      break;
+    case 90:
+      keys[Z] = false;
+      break;
+    case 75:
+      keys[K] = false;
+      break;
+    case 77:
+      keys[M] = false;
+      break;
+  }
+}
+
+ 
+
+  
+  
+  
