@@ -1,12 +1,15 @@
 //controls: 
 //player 1: a,z
 //player 2: k,m
-final int SCREEN_WIDTH = 900;
-final int SCREEN_LENGTH = 600;
+final int SCREEN_WIDTH = 600;
+final int SCREEN_LENGTH = 900;
 final int PAD_WIDTH = 10;
 final int PAD_LENGTH = SCREEN_WIDTH/8;
+final int DIAM = PAD_LENGTH * 3/4;
+int ball1=0;
+int ball2=PAD_LENGTH*3+move1;
 int move1=0;
-int move2=PAD_LENGTH*3;
+int move2=0;
 PShape pad1, pad2, ball;
 boolean[] keys = new boolean[4];
 final int A = 0; //65
@@ -15,46 +18,80 @@ final int K = 2; //75
 final int M = 3; //77
 
 void setup(){
-  size(SCREEN_WIDTH, SCREEN_LENGTH);
+  size(SCREEN_LENGTH, SCREEN_WIDTH);
   background(255,204,0);
   //pad1 = createShape(RECT,0,move1,PAD_WIDTH,PAD_LENGTH);
   //pad1.setFill(color(255));
 }
 
 void draw(){
-  if (keys[A])
-    move1+=5;
-  if (keys[Z])
+  
+   fill(255,204,0);
+   noStroke();
+   rect(0,PAD_LENGTH*3+move1,PAD_WIDTH,PAD_LENGTH); 
+   rect(SCREEN_LENGTH-PAD_WIDTH,PAD_LENGTH*3+move2,PAD_WIDTH,PAD_LENGTH); 
+   
+  
+  
+  
+  if (keyPressed)
+  {
+    
+    if (keys[A])
     move1-=5;
+  if (keys[Z])
+    move1+=5;
   if (keys[K])
-    move2 += 5;
-  if (keys[M])
     move2 -= 5;
-   fill(255);
-   rect(move1,move2,move1+PAD_WIDTH,move2+PAD_LENGTH);
+  if (keys[M])
+    move2 += 5;
+  } 
+  fill(255);
+  rect(0,PAD_LENGTH*3+move1,PAD_WIDTH,PAD_LENGTH);
+  rect(SCREEN_LENGTH-PAD_WIDTH,PAD_LENGTH*3+move2,PAD_WIDTH,PAD_LENGTH); 
+
   //shape(pad1,move1,move2);
+ 
+  
+  
+  
   
 }
 
 void keyPressed(){
-  int button = key;
+  key = Character.toUpperCase(key);
+  char button = key;
   switch (button){
     case 65:
+    if (PAD_LENGTH*3+move1<0)
+      keys[A] = false;
+    else
       keys[A] = true;
       break;
     case 90:
+    if (PAD_LENGTH*3+move1>SCREEN_WIDTH-PAD_LENGTH)
+      keys[Z] = false;
+    else
       keys[Z] = true;
       break;
     case 75:
+     if (PAD_LENGTH*3+move2<0)
+      keys[K] = false;
+    else
       keys[K] = true;
       break;
     case 77:
+     if (PAD_LENGTH*3+move2>SCREEN_WIDTH-PAD_LENGTH)
+      keys[M] = false;
+    else
       keys[M] = true;
       break;
   }
 }
 
 void keyReleased(){
+    key = Character.toUpperCase(key);
+
   int button = key;
   switch (button){
     case 65:
